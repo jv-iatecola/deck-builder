@@ -1,12 +1,18 @@
 import "../style.css"
+import {addDeck} from "./utils/localStorageUtils"
 
+const goToDeck = document.createElement("a")
 const groupElement = document.createElement("div")
-
 const deck = []
+
+goToDeck.href = "/deck.html"
+goToDeck.textContent = "Go To Deck"
+document.body.prepend(goToDeck)
 
 function addCardToDeck(card){
     deck.push(card)
-    console.log(deck)
+    addDeck(deck)
+    // console.log(deck)
 }
 
 async function getCardImage(){
@@ -16,7 +22,7 @@ async function getCardImage(){
 
     const response = await fetch(url)
     const cards = await response.json()
-    console.log(cards)
+    // console.log(cards)
 
     cards.data.forEach((card)=>{
         const imageElement = document.createElement("img")
